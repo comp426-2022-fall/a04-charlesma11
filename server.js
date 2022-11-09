@@ -16,16 +16,29 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.get('/app/', (req, res) => {
-  res.type('html');
   res.status(200).send('200 OK');
-  console.log(res);
 });
 
 app.get('/app/roll/', (req, res) => {
   const new_sides = req.body.sides ? req.body.sides : sides;
   const new_dice = req.body.dice ? req.body.dice : dice;
   const new_rolls = req.body.rolls ? req.body.rolls : rolls;
+  res.setHeader('Content-Type', 'application/json');
   res.status(200).type('json').json(roll(new_sides, new_dice, new_rolls));
+});
+
+app.post('/app/roll', (req, res, next) => {
+  res
+    .status(200)
+    .send(
+      JSON.stringify(
+        roll(
+          parseInt(req.body.sides),
+          parseInt(req.body.dice),
+          parseInt(req.body.rolls)
+        )
+      )
+    );
 });
 
 app.get('/app/roll/:sides/', (req, res) => {
