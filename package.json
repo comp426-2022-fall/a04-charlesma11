@@ -1,0 +1,27 @@
+{
+  "name": "a04-charlesma11",
+  "version": "1.0.0",
+  "description": "This assignment will help you stand up a web API using Express and the module that you produced for a03.",
+  "main": "server.js",
+  "scripts": {
+    "test": "node server.js --port=5555"
+  },
+  "directories": {
+    "lib": "lib"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/comp426-2022-fall/a04-charlesma11.git"
+  },
+  "author": "charlesma11",
+  "license": "GPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/comp426-2022-fall/a04-charlesma11/issues"
+  },
+  "homepage": "https://github.com/comp426-2022-fall/a04-charlesma11#readme",
+  "dependencies": {
+    "express": "^4.18.2",
+    "minimist": "^1.2.7"
+  },
+  "type": "module"
+}
