@@ -20,11 +20,8 @@ app.get('/app/', (req, res) => {
 });
 
 app.get('/app/roll/', (req, res) => {
-  const new_sides = req.body.sides ? req.body.sides : sides;
-  const new_dice = req.body.dice ? req.body.dice : dice;
-  const new_rolls = req.body.rolls ? req.body.rolls : rolls;
   res.setHeader('Content-Type', 'application/json');
-  res.status(200).type('json').json(roll(new_sides, new_dice, new_rolls));
+  res.status(200).send(JSON.stringify(roll(sides, dice, rolls)));
 });
 
 app.post('/app/roll', (req, res, next) => {
@@ -43,7 +40,10 @@ app.post('/app/roll', (req, res, next) => {
 
 app.get('/app/roll/:sides/', (req, res) => {
   res.setHeader('Content-Type', 'application/json');
-  res.status(200).type('json').json(roll(req.params['sides'], dice, rolls));
+  res
+    .status(200)
+    .type('json')
+    .json(roll(parseInt(req.params['sides']), dice, rolls));
 });
 
 app.get('/app/roll/:sides/:dice/', (req, res) => {
@@ -51,7 +51,9 @@ app.get('/app/roll/:sides/:dice/', (req, res) => {
   res
     .status(200)
     .type('json')
-    .json(roll(req.params['sides'], req.params['dice'], rolls));
+    .json(
+      roll(parseInt(req.params['sides']), parseInt(req.params['dice']), rolls)
+    );
 });
 
 app.get('/app/roll/:sides/:dice/:rolls/', (req, res) => {
@@ -59,7 +61,13 @@ app.get('/app/roll/:sides/:dice/:rolls/', (req, res) => {
   res
     .status(200)
     .type('json')
-    .json(roll(req.params['sides'], req.params['dice'], req.params['rolls']));
+    .json(
+      roll(
+        parseInt(req.params['sides']),
+        parseInt(req.params['dice']),
+        parseInt(req.params['rolls'])
+      )
+    );
 });
 
 app.get('*', (req, res) => {
